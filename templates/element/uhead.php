@@ -44,6 +44,12 @@
                                 <i class="fas fa-chart-bar text-white"></i> Result
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="<?= $this->Url->build(['controller'=>'users','action'=>'add']);?>">
+                                <i class="fas fa-chart-bar text-white"></i> Add Users
+                            </a>
+                        </li>
+
                         <!-- <li class="nav-item">
                             <a class="nav-link text-white" href="#">
                                 <i class="fas fa-bell text-white"></i> Notices

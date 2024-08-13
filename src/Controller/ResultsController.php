@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -12,14 +13,24 @@ namespace App\Controller;
 class ResultsController extends AppController
 {
     public function beforeFilter(\Cake\Event\EventInterface $event)
-{
-    parent::beforeFilter($event);
-    $this->viewBuilder()->setLayout('uhome');
+    {
+        parent::beforeFilter($event);
+        $this->viewBuilder()->setLayout('uhome');
 
-    // Configure the login action to not require authentication, preventing
-    // the infinite redirect loop issue
-    $this->Authentication->addUnauthenticatedActions(['login']);
-}
+        // Configure the login action to not require authentication, preventing
+        // the infinite redirect loop issue
+        $this->Authentication->addUnauthenticatedActions(['login', 'marksheet', 'rform']);
+    }
+    public function marksheet()
+    {
+        $this->viewBuilder()->setLayout('');
+    }
+
+    public function rform()
+    {
+        $this->viewBuilder()->setLayout('home');
+    }
+
     /**
      * Index method
      *

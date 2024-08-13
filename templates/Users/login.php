@@ -21,7 +21,7 @@
             <?= $this->Form->submit(__('Login'),['type' => 'submit', 'class' => 'btn btn-primary m-3']); ?>
             <?= $this->Form->end() ?>
 
-            <?= $this->Html->link("Add User", ['action' => 'add']) ?>
+            <!-- <?= $this->Html->link("Add User", ['action' => 'add']) ?> -->
             
               </div>
             
