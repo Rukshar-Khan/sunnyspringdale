@@ -5,7 +5,7 @@
  */
 ?>
 <div class="results index content">
-    <?= $this->Html->link(__('New Result'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <!-- <?= $this->Html->link(__('New Result'), ['action' => 'add'], ['class' => 'button float-right']) ?> -->
     <h3><?= __('Results') ?></h3>
     <div class="table-responsive ">
         <table>
