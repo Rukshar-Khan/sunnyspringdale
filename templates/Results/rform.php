@@ -89,7 +89,7 @@
       <div class="card-body">
         <h4 class="card-title">Enter Roll No:</h4>
         <div class="my-4">
-          <?= $this->Form->control('roll_no', [
+          <?= $this->Form->control('rollno', [
                 'type' => 'text', 
                 'placeholder' => 'Roll No', 
                 'label' => false, 
