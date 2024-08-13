@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use Cake\ORM\TableRegistry;
 /**
  * Results Controller
  *
@@ -12,8 +12,48 @@ namespace App\Controller;
  */
 class ResultsController extends AppController
 {
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadModel('Students');
+        $this->loadModel('Marks');
+        $this->loadModel('Results');
+        // Load other models if needed
+    }
+
+    public function marksheet()
+    {
+        $this->viewBuilder()->setLayout('home');
+
+        if ($this->request->is('post')) {
+            $data = $this->request->getData();
+
+            // Ensure correct field name
+            $rollNo = isset($data['roll_no']) ? $data['roll_no'] : null;
+
+            if ($rollNo) {
+                // Fetch student record or perform other actions
+                $student = $this->Students->find()
+                    ->where(['roll_no' => $rollNo])
+                    ->first();
+
+                if ($student) {
+                    // Set the student data to view
+                    $this->set('student', $student);
+                } else {
+                    $this->Flash->error(__('Student not found.'));
+                }
+            } else {
+                $this->Flash->error(__('Roll No is required.'));
+            }
+        }
+    }
+
+
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
+        
         parent::beforeFilter($event);
         $this->viewBuilder()->setLayout('uhome');
 
@@ -21,15 +61,49 @@ class ResultsController extends AppController
         // the infinite redirect loop issue
         $this->Authentication->addUnauthenticatedActions(['login', 'marksheet', 'rform']);
     }
-    public function marksheet()
-    {
-        $this->viewBuilder()->setLayout('');
-    }
+    // public function marksheet()
+    // {
+    //     // $this->viewBuilder()->setLayout('');
+        
+    //     if ($this->request->is('post')) {
+    //         $data = $this->request->getData();
+    //         $year = $data['year'];
+    //         $term = $data['term'];
+    //         $rollNo = $data['rollno'];
+    //         $motherName = $data['mother_name'];
+
+    //         $studentsTable = TableRegistry::getTableLocator()->get('Students');
+    //         $marksTable = TableRegistry::getTableLocator()->get('Marks');
+    //         $resultsTable = TableRegistry::getTableLocator()->get('Results');
+
+    //         try {
+    //             // Fetch student details based on roll number and mother's name
+    //             $student = $studentsTable->find()
+    //                 ->where(['rollno' => $rollNo, 'mother_name' => $motherName])
+    //                 ->firstOrFail();
+
+    //             // Fetch marks based on student ID and academic year
+    //             $marks = $marksTable->find()
+    //                 ->where(['student_id' => $student->id, 'academic_year' => $year])
+    //                 ->firstOrFail();
+
+    //             // Calculate results
+    //             $result = $resultsTable->find()
+    //                 ->where(['student_id' => $student->id])
+    //                 ->firstOrFail();
+
+    //             $this->set(compact('student', 'marks', 'result'));
+    //         } catch (\Exception $e) {
+    //             $this->Flash->error(__('Student or marks not found.'));
+    //             return $this->redirect(['action' => 'index']);
+    //         }
+    //     }
+    // }
 
     public function rform()
     {
         $this->viewBuilder()->setLayout('home');
-    }
+        }
 
     /**
      * Index method
