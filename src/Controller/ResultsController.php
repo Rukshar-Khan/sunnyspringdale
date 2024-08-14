@@ -24,44 +24,77 @@ class ResultsController extends AppController
 
     public function marksheet()
     {
+        // $this->viewBuilder()->setLayout('home');
+
+        // if ($this->request->is('post')) {
+        //     $data = $this->request->getData();
+
+        //     // Ensure correct field name
+        //     $rollNo = isset($data['rollno']) ? $data['rollno'] : null;
+        //     $term = isset($data['term']) ? $data['term'] : 'Term1';
+            
+        //     if ($rollNo) {
+        //         // Fetch student record or perform other actions
+        //         // $student = $this->Students->find()
+        //         //     ->where(['rollno' => $rollNo])
+        //         //     ->firstOrFail();
+
+        //         $student =  $this->Marks->find()
+        //         ->contain(['Students','Results'])
+        //         ->where(['Marks.rollno' => $rollNo])
+        //         ->firstOrFail();
+
+
+        //         if ($student) {
+        //             // Set the student data to view
+        //             // $this->set('student', $student);
+        //             $this->set('marks', $student);
+        //         $this->set('student', $student->student); // Student data
+        //         $this->set('results', $student->results); // Results data
+        //         $this->set('term', $term); // Term for conditional display
+        //         } else {
+        //             $this->Flash->error(__('Student not found.'));
+        //         }
+        //     } else {
+        //         $this->Flash->error(__('Roll No is required.'));
+        //     } 
+        //     // else {
+        //         $this->Flash->error(__('Invalid request method.'));
+        //     }
+        // 
+       
         $this->viewBuilder()->setLayout('home');
 
         if ($this->request->is('post')) {
             $data = $this->request->getData();
-
+    
             // Ensure correct field name
             $rollNo = isset($data['rollno']) ? $data['rollno'] : null;
             $term = isset($data['term']) ? $data['term'] : 'Term1';
-            
+    
             if ($rollNo) {
-                // Fetch student record or perform other actions
-                // $student = $this->Students->find()
-                //     ->where(['rollno' => $rollNo])
-                //     ->firstOrFail();
-
-                $student =  $this->Marks->find()
-                ->contain(['Students','Results'])
-                ->where(['Marks.rollno' => $rollNo])
-                ->firstOrFail();
-
-
-                if ($student) {
-                    // Set the student data to view
-                    // $this->set('student', $student);
-                    $this->set('marks', $student);
-                $this->set('student', $student->student); // Student data
-                $this->set('results', $student->results); // Results data
-                $this->set('term', $term); // Term for conditional display
+                // Fetch marks including associated student and results data
+                $marks = $this->Marks->find()
+                    ->contain(['Students', 'Results'])
+                    ->where(['Marks.rollno' => $rollNo])
+                    ->firstOrFail();
+    
+                if ($marks) {
+                    // Set the data to view
+                    $this->set('marks', $marks);
+                    $this->set('student', $marks->student); // Student data
+                    $this->set('results', $marks->results); // Results data
+                    $this->set('term', $term); // Term for conditional display
                 } else {
-                    $this->Flash->error(__('Student not found.'));
+                    $this->Flash->error(__('Marks not found for the given Roll No.'));
                 }
             } else {
                 $this->Flash->error(__('Roll No is required.'));
-            } 
-            // else {
-                $this->Flash->error(__('Invalid request method.'));
             }
+        } else {
+            $this->Flash->error(__('Invalid request method.'));
         }
+    }
     
 
 
