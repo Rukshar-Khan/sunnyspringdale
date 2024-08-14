@@ -190,7 +190,7 @@
                 Roll No: <?= isset($student) ? h($marks->rollno) : 'N/A' ?>
             </div>
             <div class="bg-primary m-2 p-2 text-white rounded">
-                Admission No: <?= isset($student) ? h($results->academic_year) : 'N/A' ?>
+                Admission No: <?= isset($student) ? h($marks->academic_year) : 'N/A' ?>
             </div>
         </div>
         <div class="col-4">
