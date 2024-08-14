@@ -89,7 +89,7 @@ class ResultsController extends AppController
                     // $this->set('student', $student);
                     $this->set('marks', $student);
                 $this->set('student', $student->student); // Student data
-                $this->set('results', $student->results); // Results data
+                $this->set('results', $student->result); // Results data
                 $this->set('term', $term); // Term for conditional display
                 } else {
                     $this->Flash->error(__('Marks not found for the given Roll No.'));

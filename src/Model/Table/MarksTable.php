@@ -49,9 +49,10 @@ class MarksTable extends Table
         'joinType' => 'INNER',
     ]);
 
-    $this->hasMany('Results', [
+    $this->hasone('Results', [
         'foreignKey' => 'student_id',
-        'joinType' => 'INNER',
+        'bindingKey' => 'student_id',
+        'joinType' => 'LEFT',
     ]);
     }
 

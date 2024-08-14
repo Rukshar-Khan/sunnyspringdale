@@ -40,6 +40,14 @@ class StudentsTable extends Table
         $this->setTable('students');
         $this->setDisplayField('name');
         $this->setPrimaryKey('student_id');
+
+        $this->hasMany('Marks', [
+            'foreignKey' => 'student_id',
+        ]);
+    
+        $this->hasOne('Results', [
+            'foreignKey' => 'student_id',
+        ]);
     }
 
     /**

@@ -187,7 +187,7 @@
                 Student Name: <?= isset($student) ? h($student->name) : 'N/A' ?>
             </div>
             <div class="bg-primary m-2 p-2 text-white rounded">
-                Roll No: <?= isset($student) ? h($student->rollno) : 'N/A' ?>
+                Roll No: <?= isset($student) ? h($marks->rollno) : 'N/A' ?>
             </div>
             <div class="bg-primary m-2 p-2 text-white rounded">
                 Admission No: <?= isset($student) ? h($student->admission_no) : 'N/A' ?>
@@ -195,7 +195,7 @@
         </div>
         <div class="col-4">
             <div class="bg-primary mt-3 me-2 p-2 text-white rounded">
-                Class: <?= isset($student) ? h($student->class) : 'N/A' ?>
+                Class: <?= isset($student) ? h($marks->class) : 'N/A' ?>
             </div>
             <div class="bg-primary m-2 p-2 text-white rounded">
                 Mother's Name: <?= isset($student) ? h($student->mother_name) : 'N/A' ?>
@@ -248,10 +248,10 @@
         <h5>Total: <?= $term == 'Term1' ? h($marks->term1_total_marks) : h($marks->term2_total_marks) ?></h5>
     </div>
     <div class="bg-light text-center py-1">
-        <h5>Percentage(%): <?= $term == 'Term1' ? h($marks->term1_percentage) : h($marks->term2_percentage) ?></h5>
+        <h5>Percentage(%): <?= $term == 'Term1' ? h($results->term1_percentage) : h($results->term2_percentage) ?></h5>
     </div>
     <div class="bg-primary text-center text-white py-1 pt-3 rounded">
-        <h5>Grade: <?= $term == 'Term1' ? h($marks->term1_grade) : h($marks->term2_grade) ?></h5>
+        <h5>Grade: <?= $term == 'Term1' ? h($results->term1_grade) : h($results->term2_grade) ?></h5>
     </div>
 
     <?php else: ?>
