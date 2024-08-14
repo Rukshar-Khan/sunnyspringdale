@@ -44,6 +44,8 @@ class ResultsController extends AppController
                 ->where(['Marks.rollno' => $rollNo])
                 ->firstOrFail();
 
+                $log=$this->Marks->getConnection()->getLogger()->all(); // Log all queries
+                debug($log);
 
                 if ($student) {
                     // Set the student data to view
