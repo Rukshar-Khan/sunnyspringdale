@@ -5,7 +5,7 @@
  */
 ?>
 <div class="row">
-    <aside class="column">
+    <!-- <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
             <?= $this->Html->link(__('Edit Academic Year'), ['action' => 'edit', $academicYear->year_id], ['class' => 'side-nav-item']) ?>
@@ -13,7 +13,7 @@
             <?= $this->Html->link(__('List Academic Years'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Academic Year'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
-    </aside>
+    </aside> -->
     <div class="column-responsive column-80">
         <div class="academicYears view content">
             <h3><?= h($academicYear->academic_year) ?></h3>
