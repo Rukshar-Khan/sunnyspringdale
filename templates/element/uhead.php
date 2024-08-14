@@ -72,6 +72,13 @@
                             </a>
                         </li> -->
                     </ul>
+                    <div class="btn-toolbar mb-2 mb-md-0 ">
+                    <a class="bg-light" href="<?= $this->Url->build(['controller' => 'users', 'action' => 'logout']); ?>">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </a>
+                </div>
                 </div>
             </nav>
 
