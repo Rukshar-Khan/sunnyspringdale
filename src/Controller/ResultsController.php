@@ -19,6 +19,7 @@ class ResultsController extends AppController
         $this->loadModel('Students');
         $this->loadModel('Marks');
         $this->loadModel('Results');
+        $this->loadModel('academicYears');
         // Load other models if needed
     }
 

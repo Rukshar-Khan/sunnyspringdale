@@ -190,7 +190,7 @@
                 Roll No: <?= isset($student) ? h($marks->rollno) : 'N/A' ?>
             </div>
             <div class="bg-primary m-2 p-2 text-white rounded">
-                Admission No: <?= isset($student) ? h($student->admission_no) : 'N/A' ?>
+                Admission No: <?= isset($student) ? h($results->academic_year) : 'N/A' ?>
             </div>
         </div>
         <div class="col-4">
@@ -259,7 +259,7 @@
     <?php endif; ?>
 
     <div class="text-center">
-        <a href="<?= $this->Url->build(['controller' => 'Pages', 'action' => 'display', 'home']) ?>">
+        <a href="<?= $this->Url->build(['controller' => 'Pages', 'action' => 'display', 'landing']) ?>">
             <button type="button" class="btn btn-primary m-5">Home</button>
         </a>
     </div>
