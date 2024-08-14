@@ -5,7 +5,7 @@
  */
 ?>
 <div class="academicYears index content">
-    <?= $this->Html->link(__('New Academic Year'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <!-- <?= $this->Html->link(__('New Academic Year'), ['action' => 'add'], ['class' => 'button float-right']) ?> -->
     <h3><?= __('Academic Years') ?></h3>
     <div class="table-responsive">
         <table>
