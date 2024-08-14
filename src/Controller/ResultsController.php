@@ -24,15 +24,54 @@ class ResultsController extends AppController
 
     public function marksheet()
     {
+        // $this->viewBuilder()->setLayout('home');
+
+        // if ($this->request->is('post')) {
+        //     $data = $this->request->getData();
+
+        //     // Ensure correct field name
+        //     $rollNo = isset($data['rollno']) ? $data['rollno'] : null;
+        //     $term = isset($data['term']) ? $data['term'] : 'Term1';
+            
+        //     if ($rollNo) {
+        //         // Fetch student record or perform other actions
+        //         // $student = $this->Students->find()
+        //         //     ->where(['rollno' => $rollNo])
+        //         //     ->firstOrFail();
+
+        //         $student =  $this->Marks->find()
+        //         ->contain(['Students','Results'])
+        //         ->where(['Marks.rollno' => $rollNo])
+        //         ->firstOrFail();
+
+
+        //         if ($student) {
+        //             // Set the student data to view
+        //             // $this->set('student', $student);
+        //             $this->set('marks', $student);
+        //         $this->set('student', $student->student); // Student data
+        //         $this->set('results', $student->results); // Results data
+        //         $this->set('term', $term); // Term for conditional display
+        //         } else {
+        //             $this->Flash->error(__('Student not found.'));
+        //         }
+        //     } else {
+        //         $this->Flash->error(__('Roll No is required.'));
+        //     } 
+        //     // else {
+        //         $this->Flash->error(__('Invalid request method.'));
+        //     }
+        // 
+       
         $this->viewBuilder()->setLayout('home');
 
         if ($this->request->is('post')) {
             $data = $this->request->getData();
-
+    
             // Ensure correct field name
             $rollNo = isset($data['rollno']) ? $data['rollno'] : null;
             $term = isset($data['term']) ? $data['term'] : 'Term1';
-            
+    
             if ($rollNo) {
                 // Fetch student record or perform other actions
                 // $student = $this->Students->find()
@@ -44,8 +83,6 @@ class ResultsController extends AppController
                 ->where(['Marks.rollno' => $rollNo])
                 ->firstOrFail();
 
-                $log=$this->Marks->getConnection()->getLogger()->all(); // Log all queries
-                debug($log);
 
                 if ($student) {
                     // Set the student data to view
@@ -55,15 +92,15 @@ class ResultsController extends AppController
                 $this->set('results', $student->results); // Results data
                 $this->set('term', $term); // Term for conditional display
                 } else {
-                    $this->Flash->error(__('Student not found.'));
+                    $this->Flash->error(__('Marks not found for the given Roll No.'));
                 }
             } else {
                 $this->Flash->error(__('Roll No is required.'));
-            } 
-            // else {
-                $this->Flash->error(__('Invalid request method.'));
             }
+        } else {
+            $this->Flash->error(__('Invalid request method.'));
         }
+    }
     
 
 
